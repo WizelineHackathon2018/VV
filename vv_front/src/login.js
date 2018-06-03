@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import './bootstrap/vendor/bootstrap/css/bootstrap.min.css';
 import './bootstrap/fonts/font-awesome-4.7.0/css/font-awesome.min.css';
 import './bootstrap/fonts/Linearicons-Free-v1.0.0/icon-font.min.css';
@@ -43,9 +45,7 @@ class Login extends Component {
 							</div>
 					
 							<div className="container-login100-form-btn">
-								<button className="login100-form-btn">
-								Login
-								</button>
+								<Link>Login</Link>
 							</div>
 						</form>
 					</div>
