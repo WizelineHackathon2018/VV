@@ -11,13 +11,33 @@ var con  = mysql.createConnection(
   }
 );
 
-con.connect(function(err)
+function traerProyectos(fkIdUsuario)
 {
-  if(err) throw err;
-  con.query("SELECT * FROM imagenes", function (err,result,fields)
+  
+}
+
+//createPoryect("xx", "xx", "11/09/2018", 1);
+function createProyect(nombre, descripcion, fechaInicio, fkIdUsuario)
+{ 
+
+  con.connect(function(err)
   {
-    con.end();
+  /*
     if(err) throw err;
-    console.log(result);
+    con.query("SELECT * FROM imagenes", function (err,result,fields)
+    {
+      con.end();
+      if(err) throw err;
+      console.log(result);
+    }); */
+
+    var post  = {nombre: nombre, descripcion: descripcion, fechaInicio: fechaInicio, fkIdUsuario: fkIdUsuario};
+    var query = con.query('INSERT INTO proyectos SET ?', post, function(err, result) {
+    // Neat!
+    con.end();
   });
+ 
+  console.log(query.sql);
+
 });
+}

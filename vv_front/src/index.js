@@ -1,11 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Login from './login';
-import { BrowserRouter, Route } from 'react-router-dom';
+import App from './App';
 
-
-ReactDOM.render(
-	<BrowserRouter>
-        <Login />
-	</BrowserRouter>,
-	document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
