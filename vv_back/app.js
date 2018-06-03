@@ -26,6 +26,7 @@ app.use('/public', express.static(__dirname + '/public'));
 
 app.post('/upload', (req, res, next) => {
   console.log(req);
+  /*
   let imageFile = req.files.file;
 
   imageFile.mv(`${__dirname}/public/${req.body.filename}.jpg`, function(err) {
@@ -34,7 +35,42 @@ app.post('/upload', (req, res, next) => {
     }
 
     res.json({file: `public/${req.body.filename}.jpg`});
+  }); */
+
+  var mysql = require('mysql');
+
+var con  = mysql.createConnection(
+  {
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "mydb",
+  }
+);
+
+
+
+  con.connect(function(err)
+  {
+  /*
+    if(err) throw err;
+    con.query("SELECT * FROM imagenes", function (err,result,fields)
+    {
+      con.end();
+      if(err) throw err;
+      console.log(result);
+    }); */
+
+    var post  = {nombre: req.body.usuario, correo: "xx", contraseña: req.body.contraseña, fkIdImagenes: 1};
+    var query = con.query('INSERT INTO usuarios SET ?', post, function(err, result) {
+    // Neat!
+    con.end();
   });
+ 
+  console.log(query.sql);
+
+});
+
 
 })
 

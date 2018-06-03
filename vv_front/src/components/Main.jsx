@@ -15,15 +15,15 @@ class Main extends React.Component {
     ev.preventDefault();
 
     const data = new FormData();
-    data.append('file', this.uploadInput.files[0]);
-    data.append('filename', this.fileName.value);
+    data.append('usuario', this.usuario.value);
+    data.append('contraseña', this.contraseña.value);
 
     fetch('http://localhost:8000/upload', {
       method: 'POST',
       body: data,
     }).then((response) => {
       response.json().then((body) => {
-        this.setState({ imageURL: `http://localhost:8000/${body.file}` });
+        this.setState({ imageURL: `http://localhost:8000/${body}` });
       });
     });
   }
@@ -32,10 +32,10 @@ class Main extends React.Component {
     return (
       <form onSubmit={this.handleUploadImage}>
         <div>
-          <input ref={(ref) => { this.uploadInput = ref; }} type="file" />
+          <input ref={(ref) => { this.usuario = ref; }} type="text" />
         </div>
         <div>
-          <input ref={(ref) => { this.fileName = ref; }} type="text" placeholder="Enter the desired name of file" />
+          <input ref={(ref) => { this.contraseña = ref; }} type="text" placeholder="Enter the desired name of file" />
         </div>
         <br />
         <div>
@@ -46,5 +46,8 @@ class Main extends React.Component {
     );
   }
 }
+
+
+
 
 export default Main;
