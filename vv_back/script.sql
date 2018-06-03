@@ -20,7 +20,7 @@ USE `projectvv` ;
 -- -----------------------------------------------------
 -- Table `mydb`.`imagenes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`imagenes` (
+CREATE TABLE IF NOT EXISTS `projectvv`.`imagenes` (
   `idImagenes` INT NOT NULL AUTO_INCREMENT,
   `imagen` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`idImagenes`))
@@ -30,7 +30,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`usuarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`usuarios` (
+CREATE TABLE IF NOT EXISTS `projectvv`.`usuarios` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `correo` VARCHAR(45) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`usuarios` (
   INDEX `fk_usuarios_imagenes1_idx` (`fkIdImagenes` ASC),
   CONSTRAINT `fk_usuarios_imagenes1`
     FOREIGN KEY (`fkIdImagenes`)
-    REFERENCES `mydb`.`imagenes` (`idImagenes`)
+    REFERENCES `projectvv`.`imagenes` (`idImagenes`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -49,7 +49,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`proyectos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`proyectos` (
+CREATE TABLE IF NOT EXISTS `projectvv`.`proyectos` (
   `idproyecto` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(50) NULL,
   `descripcion` VARCHAR(255) NULL,
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`proyectos` (
   INDEX `fk_proyectos_usuarios1_idx` (`fkIdUsuario` ASC),
   CONSTRAINT `fk_proyectos_usuarios1`
     FOREIGN KEY (`fkIdUsuario`)
-    REFERENCES `mydb`.`usuarios` (`idUsuario`)
+    REFERENCES `projectvv`.`usuarios` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -69,7 +69,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`documntos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`documntos` (
+CREATE TABLE IF NOT EXISTS `projectvv`.`documntos` (
   `idDocumento` INT NOT NULL AUTO_INCREMENT,
   `documento` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idDocumento`))
@@ -79,7 +79,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`tareas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tareas` (
+CREATE TABLE IF NOT EXISTS `projectvv`.`tareas` (
   `idtarea` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(500) NOT NULL,
@@ -101,27 +101,27 @@ CREATE TABLE IF NOT EXISTS `mydb`.`tareas` (
   INDEX `fk_tareas_tareas1_idx` (`fkIdtarea` ASC),
   CONSTRAINT `fk_tareas_usuarios1`
     FOREIGN KEY (`fkIdUsuarioCreador`)
-    REFERENCES `mydb`.`usuarios` (`idUsuario`)
+    REFERENCES `projectvv`.`usuarios` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tareas_usuarios2`
     FOREIGN KEY (`fkIdUsuaroAsignado`)
-    REFERENCES `mydb`.`usuarios` (`idUsuario`)
+    REFERENCES `projectvv`.`usuarios` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tareas_proyectos1`
     FOREIGN KEY (`fkIdproyecto`)
-    REFERENCES `mydb`.`proyectos` (`idproyecto`)
+    REFERENCES `projectvv`.`proyectos` (`idproyecto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tareas_documntos1`
     FOREIGN KEY (`fkIdDocumento`)
-    REFERENCES `mydb`.`documntos` (`idDocumento`)
+    REFERENCES `projectvv`.`documntos` (`idDocumento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tareas_tareas1`
     FOREIGN KEY (`fkIdtarea`)
-    REFERENCES `mydb`.`tareas` (`idtarea`)
+    REFERENCES `projectvv`.`tareas` (`idtarea`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -130,7 +130,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`comentarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`comentarios` (
+CREATE TABLE IF NOT EXISTS `projectvv`.`comentarios` (
   `idComentario` INT NOT NULL AUTO_INCREMENT,
   `comentario` VARCHAR(255) NOT NULL,
   `fkIdTarea` INT NOT NULL,
@@ -140,12 +140,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`comentarios` (
   INDEX `fk_comentarios_usuarios1_idx` (`fkIdUsuario` ASC),
   CONSTRAINT `fk_comentarios_tareas`
     FOREIGN KEY (`fkIdTarea`)
-    REFERENCES `mydb`.`tareas` (`idtarea`)
+    REFERENCES `projectvv`.`tareas` (`idtarea`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_comentarios_usuarios1`
     FOREIGN KEY (`fkIdUsuario`)
-    REFERENCES `mydb`.`usuarios` (`idUsuario`)
+    REFERENCES `projectvv`.`usuarios` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
