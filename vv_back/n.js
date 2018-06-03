@@ -6,8 +6,8 @@ var con  = mysql.createConnection(
   {
     host: "localhost",
     user: "root",
-    password: "rootroot",
-    database: "projectvv",
+    password: "",
+    database: "mydb",
   }
 );
 
