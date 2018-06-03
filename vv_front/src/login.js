@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import './bootstrap/vendor/bootstrap/css/bootstrap.min.css';
 import './bootstrap/fonts/font-awesome-4.7.0/css/font-awesome.min.css';
@@ -20,37 +20,38 @@ class Login extends Component {
 					<div className="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
 						<form className="login100-form validate-form flex-sb flex-w">
 							<span className="login100-form-title p-b-32">
-								Account Login
+									Account Login
 							</span>
-              
+				
 							<span className="txt1 p-b-11">
-								Username
+									Username
 							</span>
-            
-							<div className="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+				
+							<div className="wrap-input100 validate-input m-b-36" /*data-validate = "Username is required"*/ >
 								<input className="input100" type="text" name="username" />
 								<span className="focus-input100"></span>
 							</div>         
-					
+						
 							<span className="txt1 p-b-11">
-								Password
+									Password
 							</span>
-					
-							<div className="wrap-input100 validate-input m-b-12" data-validate = "Password is required">
+						
+							<div className="wrap-input100 validate-input m-b-12" /*data-validate = "Password is required"*/ >
 								<span className="btn-show-pass">
 
 								</span>
 								<input class="input100" type="password" name="pass" />	
 								<span className="focus-input100"></span>
 							</div>
-					
+						
 							<div className="container-login100-form-btn">
-								<Link>Login</Link>
+								<Link to='/start' >Login</Link>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
+
 		);
 	}
 }
